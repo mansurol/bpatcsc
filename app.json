@@ -12,12 +12,18 @@
       "backgroundColor": "#ffffff"
     },
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "com.example.bpatcsc"
     },
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
+      },
+      "package": "com.mansurol_islam.bpatcsc",
+      "googleServicesFile": "./google-services.json",
+      "notification": {
+        "icon": "./assets/adaptive-icon.png"
       }
     },
     "web": {

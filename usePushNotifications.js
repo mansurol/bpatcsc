@@ -1,26 +1,25 @@
+// usePushNotifications.js
 import { useState, useEffect, useRef } from "react";
 import * as Device from "expo-device";
 import * as Notifications from "expo-notifications";
 import Constants from "expo-constants";
 import { Platform } from "react-native";
 
-// Configure the notification handler
-Notifications.setNotificationHandler({
-  handleNotification: async () => ({
-    shouldPlaySound: false,
-    shouldShowAlert: true,
-    shouldSetBadge: false,
-  }),
-});
+const usePushNotifications = () => {
+  Notifications.setNotificationHandler({
+    handleNotification: async () => ({
+      shouldPlaySound: false,
+      shouldShowAlert: true,
+      shouldSetBadge: false,
+    }),
+  });
 
-// Hook for push notifications
-export const usePushNotifications = () => {
-  const [expoPushToken, setExpoPushToken] = useState(undefined);
-  const [notification, setNotification] = useState(undefined);
+  const [expoPushToken, setExpoPushToken] = useState();
+  const [notification, setNotification] = useState();
+
   const notificationListener = useRef();
   const responseListener = useRef();
 
-  // Function to register for push notifications
   async function registerForPushNotificationsAsync() {
     let token;
     if (Device.isDevice) {
@@ -72,14 +71,10 @@ export const usePushNotifications = () => {
       });
 
     return () => {
-      if (notificationListener.current) {
-        Notifications.removeNotificationSubscription(
-          notificationListener.current
-        );
-      }
-      if (responseListener.current) {
-        Notifications.removeNotificationSubscription(responseListener.current);
-      }
+      Notifications.removeNotificationSubscription(
+        notificationListener.current
+      );
+      Notifications.removeNotificationSubscription(responseListener.current);
     };
   }, []);
 
@@ -88,3 +83,5 @@ export const usePushNotifications = () => {
     notification,
   };
 };
+
+export default usePushNotifications;

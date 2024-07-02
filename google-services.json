@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "365004636418",
+    "project_id": "notification-952b5",
+    "storage_bucket": "notification-952b5.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:365004636418:android:0442b93ecdeaa21100021b",
+        "android_client_info": {
+          "package_name": "com.mansurol_islam.bpatcsc"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCpZH4ugGsCtvT9PbVC1dfrhglxmXSS_Pk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
