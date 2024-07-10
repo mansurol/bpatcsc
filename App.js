@@ -1,12 +1,36 @@
+import React, { useEffect, useState } from "react";
 import { StatusBar } from "expo-status-bar";
-import { StyleSheet, Text, View } from "react-native";
-import usePushNotifications from "./usePushNotifications";
-import TabNav from "./Navigation/TabNav";
+import { StyleSheet } from "react-native";
 import { NavigationContainer } from "@react-navigation/native";
+import * as SplashScreen from "expo-splash-screen";
+import { enableScreens } from "react-native-screens";
+import TabNav from "./Navigation/TabNav";
+import Home from "./Src/Components/Home";
+
+SplashScreen.preventAutoHideAsync();
+enableScreens();
+
 export default function App() {
-  const { expoPushToken, notification } = usePushNotifications();
-  console.log("expoPushToken", expoPushToken);
-  const data = JSON.stringify(notification, undefined, 2);
+  const [appIsReady, setAppIsReady] = useState(false);
+
+  useEffect(() => {
+    async function prepare() {
+      try {
+        // Additional resource loading or API calls can be done here
+
+        // Simulate a loading delay
+        await new Promise((resolve) => setTimeout(resolve, 2000));
+      } catch (e) {
+        console.warn(e);
+      } finally {
+        setAppIsReady(true);
+        await SplashScreen.hideAsync();
+      }
+    }
+
+    prepare();
+  }, []);
+
   return (
     <NavigationContainer>
       <TabNav />
